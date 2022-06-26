@@ -8,9 +8,9 @@ const GoCode: NextPage = () => {
 		<Layout>
 			<main className="flex flex-col justify-center items-center h-96">
 				<h1 className="text-2xl mb-12">Please choose a method to sign-in</h1>
-				<GoogleButton />
+				<GoogleButton url="/api/google/sign-in" />
 				<span className="my-2">or</span>
-				<GithubButton />
+				<GithubButton url="/api/github/sign-in" />
 			</main>
 		</Layout>
 	);

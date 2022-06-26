@@ -1,4 +1,8 @@
-export default function GoogleButton() {
+interface GitHubButtonProps {
+	url: string;
+}
+
+export default function GitHubButton({ url }: GitHubButtonProps) {
 	return (
 		<span className="inline-flex rounded-md shadow-sm">
 			<a

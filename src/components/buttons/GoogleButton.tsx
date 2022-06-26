@@ -1,4 +1,8 @@
-export default function GoogleButton() {
+interface GoogleButtonProps {
+	url: string;
+}
+
+export default function GoogleButton({ url }: GoogleButtonProps) {
 	return (
 		<span className="inline-flex rounded-md shadow-sm">
 			<a
