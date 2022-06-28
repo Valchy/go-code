@@ -20,7 +20,7 @@ const GoCode: NextPage = () => {
 								</p>
 								<div className="relative flex flex-col sm:flex-row sm:space-x-4">
 									<a
-										href="/create-snippet"
+										href="/snippets/create"
 										className="flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-indigo-600 rounded-md sm:mb-0 hover:bg-indigo-700 md:w-auto"
 									>
 										Try It Now
