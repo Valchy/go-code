@@ -30,8 +30,15 @@ export default function Footer() {
 						</svg>
 					</a>
 				</div>
-				<p className="mt-8 text-base leading-6 text-center text-gray-400">
-					© {new Date().getFullYear()} &lt; GoCode /&gt;. All rights reserved.
+				<a
+					href="https://valerisabev.com"
+					target="_BLANK"
+					className="!mt-4 relative flex justify-center font-medium leading-6 text-gray-400 hover:text-gray-500"
+				>
+					<span className="block">About the Developer</span>
+				</a>
+				<p className="text-base leading-6 text-center text-gray-400 !mt-1">
+					© {new Date().getFullYear()} &lt; GoCode /&gt; All rights reserved.
 				</p>
 			</div>
 		</footer>

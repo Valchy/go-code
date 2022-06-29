@@ -6,15 +6,9 @@ export default function Navbar() {
 					&lt; GoCode /&gt;
 				</a>
 
-				<nav className="top-0 left-0 z-0 flex items-center justify-center w-full h-full py-5 -ml-0 space-x-5 text-base md:-ml-5 md:py-0 md:absolute">
-					<a
-						href="https://valerisabev.com"
-						target="_BLANK"
-						className="relative font-medium leading-6 text-gray-600 hover:text-gray-900"
-					>
-						<span className="block">About the Developer</span>
-					</a>
-				</nav>
+				<div>
+					<input className="rounded-xl px-4 py-2 border" placeholder="Search for a snippet" />
+				</div>
 
 				<div className="relative z-10 inline-flex items-center space-x-3 md:ml-5 lg:justify-end">
 					<span className="inline-flex rounded-md shadow-sm">
