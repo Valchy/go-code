@@ -6,9 +6,9 @@ export default function Navbar() {
 					&lt; GoCode /&gt;
 				</a>
 
-				<div>
-					<input className="rounded-xl px-4 py-2 border" placeholder="Search for a snippet" />
-				</div>
+				<form action="/snippets/search" method="POST">
+					<input className="rounded-xl px-4 py-2 border text-center" placeholder="Search for a snippet" />
+				</form>
 
 				<div className="relative z-10 inline-flex items-center space-x-3 md:ml-5 lg:justify-end">
 					<span className="inline-flex rounded-md shadow-sm">
