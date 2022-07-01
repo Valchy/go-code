@@ -1,4 +1,4 @@
-import { Profile, Strategy as GoogleStrategy } from 'passport-google-oauth20';
+import { Profile, Strategy as GitHubStrategy } from 'passport-github';
 import passport from 'passport';
 
 // logic to save your user or check if user exists in your record to proceed.
@@ -10,11 +10,11 @@ const saveUser = (user: Profile) => {
 };
 
 passport.use(
-	new GoogleStrategy(
+	new GitHubStrategy(
 		{
-			clientID: process.env.GOOGLE_CLIENT_ID as string,
-			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-			callbackURL: '/api/auth/google/callback'
+			clientID: process.env.GITHUB_CLIENT_ID as string,
+			clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+			callbackURL: '/api/auth/github/callback'
 		},
 		async (_accessToken, _refreshToken, profile, cb: any) => {
 			try {

@@ -1,11 +1,11 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
+import passport from '@lib/passport-github-auth';
+import nextConnect from 'next-connect';
 
-type Data = {
-	name: string;
-};
-
-export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-	if (req.method === 'POST') {
-	}
-	res.status(200).json({ name: 'Valeri Sabev' });
-}
+export default nextConnect<NextApiRequest, NextApiResponse>()
+	.use(passport.initialize())
+	.get(
+		passport.authenticate('github', {
+			scope: ['profile', 'email']
+		})
+	);
