@@ -15,7 +15,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 	try {
 		await connectMongo();
 
-		const snippets = await Snippet.find();
+		console.log(req.query);
+		const snippets = await Snippet.find({ snippet_title: req.query.q });
 		res.status(200).json(snippets);
 	} catch (error) {
 		res.json({ error, data: [] });

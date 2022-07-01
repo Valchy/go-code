@@ -16,7 +16,7 @@ export default function Search() {
 	useEffect(() => {
 		setTimeout(
 			() =>
-				fetch(`/api/snippets/all`)
+				fetch(`/api/snippets/all?q=${window.location.search.substr(1).split('=')[1]}`)
 					.then(res => res.json())
 					.then((snippets: SnippetType[]) => setSnippets(snippets)),
 			1000

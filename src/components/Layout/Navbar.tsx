@@ -1,4 +1,8 @@
+import { useState } from 'react';
+
 export default function Navbar() {
+	const [search, setSearch] = useState('');
+
 	return (
 		<section className="relative w-full px-8 text-gray-700 bg-white body-font">
 			<div className="container flex flex-col flex-wrap items-center justify-between py-5 mx-auto md:flex-row max-w-7xl">
@@ -6,9 +10,15 @@ export default function Navbar() {
 					&lt; GoCode /&gt;
 				</a>
 
-				<form action="/snippets/search" method="POST">
-					<input className="rounded-xl px-4 py-2 border text-center" placeholder="Search for a snippet" />
-				</form>
+				<input
+					value={search}
+					onChange={({ target }) => setSearch(target.value)}
+					onKeyDown={e => {
+						if (e.keyCode == 13) window.location.href = `/snippets/search?q=${encodeURIComponent(search)}`;
+					}}
+					className="rounded-xl px-4 py-2 border text-center"
+					placeholder="Search for a snippet"
+				/>
 
 				<div className="relative z-10 inline-flex items-center space-x-3 md:ml-5 lg:justify-end">
 					<span className="inline-flex rounded-md shadow-sm">
