@@ -1,9 +1,9 @@
 import type { NextPage } from 'next';
 import Layout from '@components/Layout';
-import useSWR from 'swr';
 import fetcher from '@utils/fecther';
+import useSWR from 'swr';
 
-const GoCode: NextPage = () => {
+const MySnippets: NextPage = () => {
 	const { data, error } = useSWR('/api/snippets', fetcher);
 
 	if (data) console.log(data);
@@ -11,4 +11,4 @@ const GoCode: NextPage = () => {
 	return <Layout>My snippets</Layout>;
 };
 
-export default GoCode;
+export default MySnippets;

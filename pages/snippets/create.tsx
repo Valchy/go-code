@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
 import Layout from '@components/Layout';
 
-const GoCode: NextPage = () => {
+const CreateSnippet: NextPage = () => {
 	return <Layout>Create Snippet</Layout>;
 };
 
-export default GoCode;
+export default CreateSnippet;

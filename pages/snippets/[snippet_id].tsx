@@ -1,5 +1,5 @@
-import React from 'react';
+import Layout from '@components/Layout';
 
 export default function Snippet() {
-	return <div>Snippet</div>;
+	return <Layout>Snippet</Layout>;
 }

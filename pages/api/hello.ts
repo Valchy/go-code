@@ -1,13 +1,22 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
-import mongoose from 'mongoose';
+import nextConnect from 'next-connect';
 
-// mongoose.connect('mongodb://localhost/gocode_db');
-// const User = mongoose.model('User', { name: String });
-
-type Data = {
+type ResTypes = {
 	name: string;
+	age: number;
+	role: string;
+	email: string;
+	url: string;
 };
 
-export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-	res.status(200).json({ name: 'Valeri Sabev' });
-}
+export const handler = nextConnect<NextApiRequest, NextApiResponse<ResTypes>>().get((req, res) => {
+	res.status(200).json({
+		name: 'Valeri Sabev',
+		age: new Date().getFullYear() - new Date('02/11/2002').getUTCFullYear(),
+		role: 'Full Stack Web Developer',
+		email: 'contact@valerisabev.com',
+		url: 'https://valerisabev.com'
+	});
+});
+
+export default handler;
