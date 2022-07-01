@@ -3,22 +3,22 @@ import nextConnect from 'next-connect';
 import connectMongo from '@utils/mongoose';
 import Snippet from '@models/Snippet';
 
-type SnippetType = {
-	name: string;
+type Data = {
+	success: boolean;
+	id: string;
 };
 
 type ErrorType = {
 	error: any;
 };
 
-const handler = nextConnect<NextApiRequest, NextApiResponse<SnippetType | ErrorType>>().post(async (req, res) => {
+const handler = nextConnect<NextApiRequest, NextApiResponse<Data | ErrorType>>().post(async (req, res) => {
 	try {
 		await connectMongo();
 		const { code_snippet, code_language } = req.body.data;
 		const snippet = await Snippet.create({ author: 'Valeri Sabev', code_snippet, code_language });
 
-		console.log(snippet);
-		res.status(301).redirect(`/snippets/${snippet._id}`);
+		res.status(200).json({ success: true, id: snippet._id.toString() });
 	} catch (error) {
 		res.json({ error });
 	}

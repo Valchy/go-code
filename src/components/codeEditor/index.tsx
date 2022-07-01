@@ -7,12 +7,16 @@ const CodeEditor = () => {
 	const [editorCode, setEditorCode] = useState('');
 
 	const handleCreate = () => {
-		axios.post('/api/snippets/create', {
-			data: {
-				code_snippet: editorCode,
-				code_language: selectedLanguage
-			}
-		});
+		axios
+			.post('/api/snippets/create', {
+				data: {
+					code_snippet: editorCode,
+					code_language: selectedLanguage
+				}
+			})
+			.then(({ data }) => {
+				if (data.success) window.location.href = `/snippets/${data.id}`;
+			});
 	};
 
 	return (
