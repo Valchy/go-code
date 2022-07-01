@@ -8,6 +8,8 @@
 		"start": "next start"
 	},
 	"dependencies": {
+		"@headlessui/react": "^1.6.5",
+		"@monaco-editor/react": "^4.4.5",
 		"@types/jsonwebtoken": "^8.5.8",
 		"@types/passport": "^1.0.9",
 		"@types/passport-github": "^1.1.7",
