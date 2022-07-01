@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 import Editor from '@monaco-editor/react';
+import PrimaryButton from '@components/buttons/Primary';
 import axios from 'axios';
 
 const CodeEditor = () => {
@@ -37,12 +38,7 @@ const CodeEditor = () => {
 				theme="vs-dark"
 				onChange={value => setEditorCode(value as string)}
 			/>
-			<button
-				onClick={handleCreate}
-				className="mt-5 flex items-center w-full px-6 py-3 mb-3 text-lg text-white bg-indigo-600 rounded-md sm:mb-0 hover:bg-indigo-700 md:w-auto"
-			>
-				Create Snippet
-			</button>
+			<PrimaryButton handler={handleCreate} text="Create Snippet" />
 		</div>
 	);
 };

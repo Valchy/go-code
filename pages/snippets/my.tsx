@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Layout from '@components/Layout';
 import Snippets from '@components/snippet';
+import PrimaryButton from '@components/buttons/Primary';
 
 type SnippetType = {
 	author: string;
@@ -26,6 +27,10 @@ export default function MySnippets() {
 		<Layout>
 			<div className="flex flex-wrap justify-around">
 				<Snippets snippets={snippets} />
+			</div>
+			<div className="flex">
+				<PrimaryButton handler={() => (window.location.href = '/snippets/create')} text="Create Snippet" />
+				<PrimaryButton handler={() => (window.location.href = '/api/auth/sign-out')} text="Sign Out" />
 			</div>
 		</Layout>
 	);
