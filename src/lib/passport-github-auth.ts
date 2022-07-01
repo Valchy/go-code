@@ -1,5 +1,7 @@
 import { Profile, Strategy as GitHubStrategy } from 'passport-github';
 import passport from 'passport';
+import connectMongo from '@utils/mongoose';
+import User from '@models/User';
 
 // logic to save your user or check if user exists in your record to proceed.
 const saveUser = (user: Profile) => {
@@ -14,16 +16,26 @@ passport.use(
 		{
 			clientID: process.env.GITHUB_CLIENT_ID as string,
 			clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
-			callbackURL: '/api/auth/github/callback'
+			callbackURL: '/api/auth/callback/github',
+			passReqToCallback: true
 		},
-		async (_accessToken, _refreshToken, profile, cb: any) => {
-			try {
-				await saveUser(profile);
-				return cb(null, profile);
-			} catch (e: any) {
-				throw new Error(e);
-			}
+		async function (request, accessToken, refreshToken, profile, done) {
+			await connectMongo();
+			await User.create({ name: 'Valeri', email: 'valchygaming@gmail.com' + Math.random() });
+			console.log('IN HERE');
+			return done(null, profile);
+			// User.findOrCreate({ googleId: profile.id }, function (err, user) {
+			// 	return done(err, user);
+			// });
 		}
+		// async (_accessToken, _refreshToken, profile, cb: any) => {
+		// 	try {
+		// 		await saveUser(profile);
+		// 		return cb(null, profile);
+		// 	} catch (e: any) {
+		// 		throw new Error(e);
+		// 	}
+		// }
 	)
 );
 
