@@ -6,7 +6,7 @@ export default function GitHubButton({ url }: GitHubButtonProps) {
 	return (
 		<span className="inline-flex rounded-md shadow-sm">
 			<a
-				href="/sign-up"
+				href={url}
 				className="inline-flex items-center justify-center px-4 py-2 text-base font-medium leading-6 whitespace-no-wrap border border-slate-800 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
 			>
 				<svg fill="#000" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 30 30" width="24px" height="24px" className="mr-2">

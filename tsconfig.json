@@ -19,6 +19,7 @@
 			"@components/*": ["src/components/*"],
 			"@services/*": ["src/services/*"],
 			"@utils/*": ["src/utils/*"],
+			"@lib/*": ["src/lib/*"],
 			"@models/*": ["src/models/*"],
 			"@styles/*": ["styles/*"]
 		}
