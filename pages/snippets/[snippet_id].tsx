@@ -24,7 +24,7 @@ export default function Snippet() {
 
 	return (
 		<Layout>
-			<Snippets snippets={snippet} />
+			<Snippets snippets={snippet} showOne />
 		</Layout>
 	);
 }

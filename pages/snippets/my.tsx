@@ -24,7 +24,9 @@ export default function MySnippets() {
 
 	return (
 		<Layout>
-			<Snippets snippets={snippets} />
+			<div className="flex flex-wrap justify-around">
+				<Snippets snippets={snippets} />
+			</div>
 		</Layout>
 	);
 }

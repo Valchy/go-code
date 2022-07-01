@@ -4,6 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 interface Snippets {
 	snippets: SnippetType[];
+	showOne?: boolean;
 }
 
 type SnippetType = {
@@ -13,25 +14,25 @@ type SnippetType = {
 	_id: string;
 };
 
-export default function Snippets({ snippets = [] }: Snippets) {
+export default function Snippets({ snippets = [], showOne }: Snippets) {
 	return (
 		<>
-			{snippets.length === 0 ? (
-				<div>
-					<Skeleton width={300} />
-					<Skeleton width={300} />
-					<Skeleton width={300} />
-					<br />
-					<Skeleton width={300} />
-				</div>
-			) : (
-				snippets.map(({ author, code_snippet, code_language, _id }) => (
-					<div key={_id} className="mb-3">
-						<CopyBlock text={code_snippet} language={code_language} showLineNumbers={10} theme={vs2015} codeBlock />
-						<span className="mt-3">Code Snippet by: {author}</span>
-					</div>
-				))
-			)}
+			{snippets.length === 0
+				? (showOne ? [true] : [true, true]).map((e, index) => (
+						<div className="mx-3" key={`skeleton-${index}`}>
+							<Skeleton width={300} />
+							<Skeleton width={300} />
+							<Skeleton width={300} />
+							<br />
+							<Skeleton width={300} />
+						</div>
+				  ))
+				: snippets.map(({ author, code_snippet, code_language, _id }) => (
+						<div key={_id} className="mx-3">
+							<CopyBlock text={code_snippet} language={code_language} showLineNumbers={10} theme={vs2015} codeBlock />
+							<span className="mt-3 block">Code Snippet by: {author}</span>
+						</div>
+				  ))}
 		</>
 	);
 }
