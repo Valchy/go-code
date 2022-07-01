@@ -9,11 +9,19 @@ type SnippetType = {
 
 type ErrorType = {
 	error: any;
-	data: [];
 };
 
-const handler = nextConnect().post((req, res) => {
-	res.json('cool');
+const handler = nextConnect<NextApiRequest, NextApiResponse<SnippetType | ErrorType>>().post(async (req, res) => {
+	try {
+		await connectMongo();
+		const { code_snippet, code_language } = req.body.data;
+		const snippet = await Snippet.create({ author: 'Valeri Sabev', code_snippet, code_language });
+
+		console.log(snippet);
+		res.status(301).redirect(`/snippets/${snippet._id}`);
+	} catch (error) {
+		res.json({ error });
+	}
 });
 
 export default handler;

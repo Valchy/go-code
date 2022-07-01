@@ -20,7 +20,7 @@ export default function Layout({ children }: LayoutProps) {
 				''
 			</Head>
 			<Navbar />
-			<main className="flex flex-col justify-center items-center">{children}</main>
+			<main className="flex flex-col justify-center items-center mt-6">{children}</main>
 			<Footer />
 		</>
 	);

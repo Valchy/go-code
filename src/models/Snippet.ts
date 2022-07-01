@@ -1,11 +1,17 @@
 import { Schema, model, models } from 'mongoose';
 
 const SnipperSchema = new Schema({
-	name: String,
-	email: {
+	author: {
 		type: String,
-		required: true,
-		unique: true
+		required: true
+	},
+	code_snippet: {
+		type: String,
+		required: true
+	},
+	code_language: {
+		type: String,
+		required: true
 	}
 });
 

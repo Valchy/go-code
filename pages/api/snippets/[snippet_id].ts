@@ -3,23 +3,22 @@ import connectMongo from '@utils/mongoose';
 import Snippet from '@models/Snippet';
 
 type SnippetType = {
-	name: string;
+	author: string;
+	code_snippet: string;
+	code_language: string;
 };
 
 type ErrorType = {
 	error: any;
-	data: [];
 };
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse<SnippetType[] | ErrorType>) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse<SnippetType | ErrorType>) {
 	try {
 		await connectMongo();
-		await Snippet.create({ name: 'Valeri', email: 'valchygaming@gmail.com' + Math.random() });
+		const snippet = await Snippet.findById(req.query.snippet_id).exec();
 
-		const snippets = await Snippet.find();
-		res.status(200).json(snippets || []);
+		res.status(200).json(snippet);
 	} catch (error) {
-		console.log(error);
-		res.json({ error, data: [] });
+		res.status(403).json({ error });
 	}
 }

@@ -3,17 +3,27 @@ import Editor from '@monaco-editor/react';
 import axios from 'axios';
 
 const CodeEditor = () => {
-	const [selectedLanguage, setSelectedLangugae] = useState('javascript');
+	const [selectedLanguage, setSelectedLanguage] = useState('javascript');
 	const [editorCode, setEditorCode] = useState('');
 
 	const handleCreate = () => {
 		axios.post('/api/snippets/create', {
-			data: editorCode
+			data: {
+				code_snippet: editorCode,
+				code_language: selectedLanguage
+			}
 		});
 	};
 
 	return (
-		<div className="container mt-5 flex flex-col items-center">
+		<div className="container flex flex-col items-center">
+			<select className="mb-4" onChange={({ target }) => setSelectedLanguage(target.value)}>
+				{['javascript', 'typescript', 'python', 'css', 'html'].map(lang => (
+					<option key={lang} value={lang}>
+						{lang}
+					</option>
+				))}
+			</select>
 			<Editor
 				height="50vh"
 				defaultLanguage="javascript"
