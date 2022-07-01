@@ -6,6 +6,7 @@ export default nextConnect<NextApiRequest, NextApiResponse>()
 	.use(passport.initialize())
 	.get(
 		passport.authenticate('google', {
+			failureRedirect: '/sign-in',
 			scope: ['profile', 'email']
 		})
 	);

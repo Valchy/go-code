@@ -6,6 +6,6 @@ export default nextConnect<NextApiRequest, NextApiResponse>()
 	.use(passport.initialize())
 	.get(
 		passport.authenticate('github', {
-			scope: ['profile', 'email']
+			failureRedirect: '/sign-in'
 		})
 	);

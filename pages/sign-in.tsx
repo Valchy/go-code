@@ -3,7 +3,7 @@ import Layout from '@components/Layout';
 import GoogleButton from '@components/buttons/GoogleButton';
 import GithubButton from '@components/buttons/GithubButton';
 
-const GoCode: NextPage = () => {
+const SignIn: NextPage = () => {
 	return (
 		<Layout>
 			<main className="flex flex-col justify-center items-center h-96">
@@ -16,4 +16,4 @@ const GoCode: NextPage = () => {
 	);
 };
 
-export default GoCode;
+export default SignIn;
