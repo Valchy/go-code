@@ -15,8 +15,8 @@ type ErrorType = {
 const handler = nextConnect<NextApiRequest, NextApiResponse<Data | ErrorType>>().post(async (req, res) => {
 	try {
 		await connectMongo();
-		const { code_snippet, code_language } = req.body.data;
-		const snippet = await Snippet.create({ author: 'Valeri Sabev', code_snippet, code_language });
+		const { code_snippet, code_language, snippet_title } = req.body.data;
+		const snippet = await Snippet.create({ author: 'Valeri Sabev', code_snippet, code_language, snippet_title });
 
 		res.status(200).json({ success: true, id: snippet._id.toString() });
 	} catch (error) {

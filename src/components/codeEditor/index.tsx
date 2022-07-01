@@ -6,13 +6,15 @@ import axios from 'axios';
 const CodeEditor = () => {
 	const [selectedLanguage, setSelectedLanguage] = useState('javascript');
 	const [editorCode, setEditorCode] = useState('');
+	const [snippetTitle, setSnippetTitle] = useState('');
 
 	const handleCreate = () => {
 		axios
 			.post('/api/snippets/create', {
 				data: {
 					code_snippet: editorCode,
-					code_language: selectedLanguage
+					code_language: selectedLanguage,
+					snippet_title: snippetTitle
 				}
 			})
 			.then(({ data }) => {
@@ -22,15 +24,22 @@ const CodeEditor = () => {
 
 	return (
 		<div className="container flex flex-col items-center">
-			<select className="mb-4" onChange={({ target }) => setSelectedLanguage(target.value)}>
+			<select className="my-4" onChange={({ target }) => setSelectedLanguage(target.value)}>
 				{['javascript', 'typescript', 'python', 'css', 'html'].map(lang => (
 					<option key={lang} value={lang}>
 						{lang}
 					</option>
 				))}
 			</select>
+			<input
+				value={snippetTitle}
+				onChange={({ target }) => setSnippetTitle(target.value)}
+				placeholder="Snippet title"
+				className="mb-4 border px-3 py-2 rounded"
+			/>
 			<Editor
-				height="50vh"
+				height="30vh"
+				width="50vw"
 				defaultLanguage="javascript"
 				language={selectedLanguage}
 				defaultValue="// Your code here..."

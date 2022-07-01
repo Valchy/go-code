@@ -12,6 +12,10 @@ const SnipperSchema = new Schema({
 	code_language: {
 		type: String,
 		required: true
+	},
+	snippet_title: {
+		type: String,
+		required: true
 	}
 });
 
