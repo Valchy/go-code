@@ -1,24 +1,30 @@
 import { useEffect, useState } from 'react';
 import Layout from '@components/Layout';
-import { CopyBlock, vs2015 } from 'react-code-blocks';
+import Snippets from '@components/snippet';
+
+type SnippetType = {
+	author: string;
+	code_snippet: string;
+	code_language: string;
+	_id: string;
+};
 
 export default function MySnippets() {
-	const [snippets, setSnippets] = useState([]);
+	const [snippets, setSnippets] = useState<SnippetType[]>([]);
 
 	useEffect(() => {
-		fetch(`/api/snippets`)
-			.then(res => res.json())
-			.then(snippets => setSnippets(snippets));
+		setTimeout(
+			() =>
+				fetch(`/api/snippets`)
+					.then(res => res.json())
+					.then((snippets: SnippetType[]) => setSnippets(snippets)),
+			1000
+		);
 	}, []);
 
 	return (
 		<Layout>
-			{snippets.map(({ author, code_snippet, code_language, _id }) => (
-				<div key={_id} className="mb-5">
-					<CopyBlock text={code_snippet} language={code_language} showLineNumbers={10} theme={vs2015} codeBlock />
-					<span>Code Snippet by: {author}</span>
-				</div>
-			))}
+			<Snippets snippets={snippets} />
 		</Layout>
 	);
 }
