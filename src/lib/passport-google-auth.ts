@@ -1,63 +1,89 @@
-import { Profile, Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import passport from 'passport';
-import connectMongo from '@utils/mongoose';
-import User from '@models/User';
+// import passport from 'passport';
+// import { Strategy as GoogleStrategy } from 'passport-google-oauth2';
+// import jwt from 'jsonwebtoken';
 
-// logic to save your user or check if user exists in your record to proceed.
-const saveUser = (user: Profile) => {
-	return new Promise((resolve, reject) => {
-		console.log(user);
-		resolve('Successful');
-	});
-};
+// import connectMongo from '@utils/mongoose';
+// import User from '@models/User';
+
+// passport.use(
+// 	'google',
+// 	new GoogleStrategy(
+// 		{
+// 			clientID: process.env.GOOGLE_CLIENT_ID as string,
+// 			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+// 			callbackURL: 'http://localhost:3000/api/auth/callback/google'
+// 		},
+// 		async (accessToken, refreshToken, profile, done) => {
+// 			console.log(accessToken, refreshToken, profile);
+
+// 			try {
+// 				console.log(profile.email);
+// 				done(null, profile);
+// 				// const obj = await User.findOne({ email: profile.email });
+// 				// if (!obj) {
+// 				// 	// create new user
+// 				// 	const newUser = new User({
+// 				// 		email: profile.email,
+// 				// 		name: profile.displayName,
+// 				// 		accessToken
+// 				// 	});
+// 				// 	await newUser.save();
+// 				// 	const token = await jwt.sign(
+// 				// 		{
+// 				// 			id: newUser._id,
+// 				// 			created: Date.now().toString()
+// 				// 		},
+// 				// 		process.env.JWT_SECRET as string
+// 				// 	);
+// 				// 	newUser.tokens.push(token);
+// 				// 	await newUser.save();
+// 				// 	done(null, newUser, { message: 'Auth successful', token });
+// 				// } else {
+// 				// 	// login existing user
+// 				// 	const token = await jwt.sign(
+// 				// 		{
+// 				// 			id: obj._id,
+// 				// 			created: Date.now().toString()
+// 				// 		},
+// 				// 		process.env.JWT_SECRET as string
+// 				// 	);
+// 				// 	obj.tokens.push(token);
+// 				// 	await obj.save();
+// 				// 	done(null, obj, { message: 'Auth successful', token });
+// 				// }
+// 			} catch (err) {
+// 				console.error(err);
+// 				done(err, false, { message: 'Internal server error' });
+// 			}
+// 		}
+// 	)
+// );
+
+// export default passport;
+
+import passport from 'passport';
+import { Strategy as GoogleStrategy } from 'passport-google-oauth2';
+import User from '@models/User';
+import connectMongo from '@utils/mongoose';
 
 passport.use(
 	new GoogleStrategy(
 		{
 			clientID: process.env.GOOGLE_CLIENT_ID as string,
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-			callbackURL: '/api/auth/callback/google',
+			callbackURL: 'http://localhost:3000/api/auth/callback/google',
 			passReqToCallback: true
 		},
-		async function (request, accessToken, refreshToken, profile, done) {
-			await connectMongo();
-			await User.create({ name: 'Valeri', email: 'valchygaming@gmail.com' + Math.random() });
-			console.log('IN HERE');
-			return done(null, profile);
-			// User.findOrCreate({ googleId: profile.id }, function (err, user) {
+		async function (request: any, accessToken: any, refreshToken: any, profile: any, done: any) {
+			// console.log(profile);
+			done(null, profile);
+			// await connectMongo();
+
+			// await User.findOrCreate({ name: 'Valeri', email: 'tets@gmail.com' }, function (err, user) {
 			// 	return done(err, user);
 			// });
 		}
-		// async (_accessToken, _refreshToken, profile, cb: any) => {
-		// await connectMongo();
-		// await User.create({ name: 'Valeri', email: 'valchygaming@gmail.com' + Math.random() });
-
-		// 	try {
-		// 		await saveUser(profile);
-		// 		return cb(null, profile);
-		// 	} catch (e: any) {
-		// 		throw new Error(e);
-		// 	}
-		// }
 	)
 );
-
-// passport.serializeUser stores user object passed in the cb method above in req.session.passport
-passport.serializeUser((user, cb) => {
-	process.nextTick(function () {
-		return cb(null, user);
-	});
-});
-
-// passport.deserializeUser stores the user object in req.user
-passport.deserializeUser(function (user: any, cb: (arg0: null, arg1: any) => any) {
-	process.nextTick(function () {
-		return cb(null, user);
-	});
-});
-
-// for broader explanation of serializeUser and deserializeUser visit https://stackoverflow.com/questions/27637609/understanding-passport-serialize-deserialize
-
-// An article that explains the concept of process.nextTick https://nodejs.dev/learn/understanding-process-nexttick
 
 export default passport;
