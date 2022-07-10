@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import { CopyBlock, vs2015 } from 'react-code-blocks';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
@@ -54,9 +55,14 @@ export default function Snippets({ snippets = [], isLoading = true, showOne }: S
 							<span className="mb-1 block text-center">{snippet_title}</span>
 							<CopyBlock text={code_snippet} language={code_language} showLineNumbers={10} theme={vs2015} codeBlock />
 							<span className="mt-3 block">Code Snippet by: {author}</span>
-							<span className="text-red-500 cursor-pointer block text-center" onClick={() => deleteSnippet(_id)}>
-								delete
-							</span>
+							<div className="flex gap-4 justify-center">
+								<Link href={`/snippets/${_id}`}>
+									<a className="text-blue-500">View</a>
+								</Link>
+								<span className="text-red-500 cursor-pointer" onClick={() => deleteSnippet(_id)}>
+									Delete
+								</span>
+							</div>
 						</div>
 				  ))}
 		</div>
