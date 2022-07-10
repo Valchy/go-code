@@ -27,7 +27,7 @@ const CodeEditor = () => {
 	return (
 		<div className="container flex flex-col items-center mt-7">
 			<select className="my-4" onChange={({ target }) => setSelectedLanguage(target.value)}>
-				{['javascript', 'typescript', 'python', 'css', 'html'].map(lang => (
+				{['javascript', 'typescript', 'python', 'java', 'cpp', 'css', 'html'].map(lang => (
 					<option key={lang} value={lang}>
 						{lang}
 					</option>
