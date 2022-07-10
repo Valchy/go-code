@@ -6,7 +6,7 @@ import { setCookie } from 'cookies-next';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
 	passport.authenticate(req.query.provider as string, { failureRedirect: '/sign-in' }, (err, user, info) => {
 		if (err) {
-			return res.json({ error: err });
+			return res.redirect('/sign-in');
 		}
 
 		// Set JWT authentication token in cookie
