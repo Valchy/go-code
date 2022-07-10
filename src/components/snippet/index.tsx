@@ -15,7 +15,7 @@ export default function Snippets({ snippets = [], isLoading = true, showOne }: S
 	return (
 		<>
 			{snippets.length === 0 && isLoading
-				? new Array(3).fill(null).map((e, index) => (
+				? new Array(showOne ? 1 : 3).fill(null).map((e, index) => (
 						<div className="mx-3" key={`skeleton-${index}`}>
 							<Skeleton width={300} style={{ marginBottom: '15px' }} />
 							<Skeleton width={300} />
