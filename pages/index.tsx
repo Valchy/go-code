@@ -4,7 +4,7 @@ import Layout from '@components/Layout';
 const GoCode: NextPage = () => {
 	return (
 		<Layout>
-			<section className="px-2 py-2 bg-white sm:px-4 md:px-12 md:py-24">
+			<section className="px-2 py-2 bg-white sm:px-4 md:px-12 md:pt-24">
 				<div className="container items-center max-w-6xl px-3 mx-auto xl:px-5">
 					<div className="flex flex-wrap items-center sm:-mx-3">
 						<div className="w-full md:w-1/2 md:px-3">

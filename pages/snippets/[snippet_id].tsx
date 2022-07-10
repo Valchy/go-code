@@ -13,7 +13,7 @@ export default function Snippet() {
 				fetch(`/api${window.location.pathname}`)
 					.then(res => res.json())
 					.then((snippet: SnippetType) => {
-						setSnippet([snippet]);
+						if (!snippet.error) setSnippet([snippet]);
 						setIsLoading(false);
 					}),
 			1000

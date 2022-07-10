@@ -9,7 +9,7 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps) {
 	return (
-		<>
+		<div className="min-h-screen flex flex-col">
 			<Head>
 				<title>&lt; GoCode /&gt;</title>
 				<link rel="icon" href="/favicon.png" />
@@ -22,6 +22,6 @@ export default function Layout({ children }: LayoutProps) {
 			<Navbar />
 			<main className="flex flex-col justify-center items-center mt-6">{children}</main>
 			<Footer />
-		</>
+		</div>
 	);
 }

@@ -21,6 +21,10 @@ const SnipperSchema = new Schema(
 		snippet_title: {
 			type: String,
 			required: true
+		},
+		is_private: {
+			type: Boolean,
+			default: true
 		}
 	},
 	{

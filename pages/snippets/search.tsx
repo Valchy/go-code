@@ -22,9 +22,7 @@ export default function Search() {
 
 	return (
 		<Layout>
-			<div className="flex flex-wrap justify-around">
-				<Snippets snippets={snippets} isLoading={isLoading} />
-			</div>
+			<Snippets snippets={snippets} isLoading={isLoading} />
 		</Layout>
 	);
 }

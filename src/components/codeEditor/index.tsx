@@ -7,6 +7,7 @@ const CodeEditor = () => {
 	const [selectedLanguage, setSelectedLanguage] = useState('javascript');
 	const [editorCode, setEditorCode] = useState('');
 	const [snippetTitle, setSnippetTitle] = useState('');
+	const [isPrivate, setIsPrivate] = useState('yes');
 
 	const handleCreate = () => {
 		axios
@@ -14,7 +15,8 @@ const CodeEditor = () => {
 				data: {
 					code_snippet: editorCode,
 					code_language: selectedLanguage,
-					snippet_title: snippetTitle
+					snippet_title: snippetTitle,
+					is_private: isPrivate
 				}
 			})
 			.then(({ data }) => {
@@ -23,7 +25,7 @@ const CodeEditor = () => {
 	};
 
 	return (
-		<div className="container flex flex-col items-center">
+		<div className="container flex flex-col items-center mt-7">
 			<select className="my-4" onChange={({ target }) => setSelectedLanguage(target.value)}>
 				{['javascript', 'typescript', 'python', 'css', 'html'].map(lang => (
 					<option key={lang} value={lang}>
@@ -35,8 +37,12 @@ const CodeEditor = () => {
 				value={snippetTitle}
 				onChange={({ target }) => setSnippetTitle(target.value)}
 				placeholder="Snippet title"
-				className="mb-4 border px-3 py-2 rounded"
+				className="mb-4 border px-3 py-2 rounded-xl text-center"
 			/>
+			<div className="flex gap-3 mb-3">
+				Private: <input type="radio" name="isPrivate" checked={isPrivate === 'yes'} onChange={() => setIsPrivate('yes')} />
+				Public: <input type="radio" name="isPrivate" checked={isPrivate === 'no'} onChange={() => setIsPrivate('no')} />
+			</div>
 			<Editor
 				height="30vh"
 				width="50vw"

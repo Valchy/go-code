@@ -35,12 +35,10 @@ export default function MySnippets() {
 
 	return (
 		<Layout>
-			<span className="mb-7">
+			<span>
 				Logged in as: <b>{authenticated.name}</b> with <i>{authenticated.email}</i>
 			</span>
-			<div className="flex flex-wrap justify-around">
-				<Snippets snippets={snippets} isLoading={isLoading} />
-			</div>
+			<Snippets snippets={snippets} isLoading={isLoading} />
 			<div className="flex mt-5">
 				<PrimaryButton handler={() => (window.location.href = '/snippets/create')} text="Create Snippet" />
 				<PrimaryButton handler={() => (window.location.href = '/api/auth/sign-out')} text="Sign Out" />
