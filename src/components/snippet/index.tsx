@@ -54,7 +54,7 @@ export default function Snippets({ snippets = [], isLoading = true, showOne }: S
 						<div key={_id} className="mx-3">
 							<span className="mb-1 block text-center">{snippet_title}</span>
 							<CopyBlock text={code_snippet} language={code_language} showLineNumbers={10} theme={vs2015} codeBlock />
-							<span className="mt-3 block">Code Snippet by: {author}</span>
+							<span className="mt-3 block text-center">Code Snippet by: {author}</span>
 							<div className="flex gap-4 justify-center">
 								<Link href={`/snippets/${_id}`}>
 									<a className="text-blue-500">View</a>
