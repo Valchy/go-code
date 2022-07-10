@@ -1,7 +1,6 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Editor from '@monaco-editor/react';
 import PrimaryButton from '@components/buttons/Primary';
-import axios from 'axios';
 
 const CodeEditor = () => {
 	const [selectedLanguage, setSelectedLanguage] = useState('javascript');
@@ -10,17 +9,21 @@ const CodeEditor = () => {
 	const [isPrivate, setIsPrivate] = useState('yes');
 
 	const handleCreate = () => {
-		axios
-			.post('/api/snippets/create', {
-				data: {
-					code_snippet: editorCode,
-					code_language: selectedLanguage,
-					snippet_title: snippetTitle,
-					is_private: isPrivate
-				}
+		fetch('/api/snippets/create', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({
+				code_snippet: editorCode,
+				code_language: selectedLanguage,
+				snippet_title: snippetTitle,
+				is_private: isPrivate
 			})
-			.then(({ data }) => {
-				if (data.success) window.location.href = `/snippets/${data.id}`;
+		})
+			.then(res => res.json())
+			.then(({ success, id }) => {
+				if (success) window.location.href = `/snippets/${id}`;
 			});
 	};
 
