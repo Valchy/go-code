@@ -35,7 +35,7 @@ export default function MySnippets() {
 
 	return (
 		<Layout>
-			<span>
+			<span className="text-center">
 				Logged in as: <b>{authenticated.name}</b> with <i>{authenticated.email}</i>
 			</span>
 			<Snippets snippets={snippets} isLoading={isLoading} />
