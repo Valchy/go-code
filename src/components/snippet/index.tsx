@@ -11,6 +11,23 @@ interface Snippets {
 }
 
 export default function Snippets({ snippets = [], isLoading = true, showOne }: Snippets) {
+	const deleteSnippet = (id: string) => {
+		if (confirm('Are you sure you want to delete this snippet?')) {
+			fetch('/api/snippets/delete', {
+				method: 'DELETE',
+				headers: {
+					'Content-Type': 'application/json'
+				},
+				body: JSON.stringify({ id })
+			})
+				.then(res => res.json())
+				.then(({ success }) => {
+					if (success) window.location.reload();
+					else window.alert('Something went wrong or you are not authorized to delete this snippet');
+				});
+		}
+	};
+
 	if (!isLoading && snippets.length === 0)
 		return (
 			<div className="flex flex-col items-center my-7">
@@ -37,6 +54,9 @@ export default function Snippets({ snippets = [], isLoading = true, showOne }: S
 							<span className="mb-1 block text-center">{snippet_title}</span>
 							<CopyBlock text={code_snippet} language={code_language} showLineNumbers={10} theme={vs2015} codeBlock />
 							<span className="mt-3 block">Code Snippet by: {author}</span>
+							<span className="text-red-500 cursor-pointer block text-center" onClick={() => deleteSnippet(_id)}>
+								delete
+							</span>
 						</div>
 				  ))}
 		</div>
