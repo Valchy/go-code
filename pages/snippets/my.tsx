@@ -26,7 +26,7 @@ export default function MySnippets() {
 				fetch(`/api/snippets`)
 					.then(res => res.json())
 					.then((snippets: SnippetType[]) => {
-						setSnippets(snippets);
+						if (snippets.length > 0) setSnippets(snippets);
 						setIsLoading(false);
 					}),
 			1000

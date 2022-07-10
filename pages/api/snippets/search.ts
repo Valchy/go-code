@@ -6,7 +6,6 @@ import type { SnippetType } from '@components/snippet/types';
 
 type ErrorType = {
 	error: any;
-	data: [];
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<SnippetType[] | ErrorType>) {
@@ -17,14 +16,14 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		const snippets = await Snippet.find({ snippet_title: req.query.q });
 		res.status(200);
 
-		snippets.filter(snippet => {
+		const filteredSnippets = snippets.filter(snippet => {
 			if (snippet.is_private && snippet.author_email !== email) return false;
 			return true;
 		});
 
-		if (snippets.length === 0) res.json({ error: 'Snippets not found', data: [] });
-		else res.json(snippets);
+		if (filteredSnippets.length === 0) res.json({ error: 'Snippets not found' });
+		else res.json(filteredSnippets);
 	} catch (error) {
-		res.json({ error, data: [] });
+		res.json({ error });
 	}
 }

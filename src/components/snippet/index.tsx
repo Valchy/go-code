@@ -13,9 +13,9 @@ interface Snippets {
 export default function Snippets({ snippets = [], isLoading = true, showOne }: Snippets) {
 	if (!isLoading && snippets.length === 0)
 		return (
-			<div className="flex flex-col items-center">
+			<div className="flex flex-col items-center my-7">
 				<Image width={128} height={128} src="/sad.png" alt="Sad" />
-				<span className="my-7">{showOne ? 'Snippet not found' : 'No snippets found'}...</span>
+				<span className="mt-5">{showOne ? 'Snippet not found' : 'No snippets found'}...</span>
 			</div>
 		);
 

@@ -13,7 +13,7 @@ export default function Search() {
 				fetch(`/api/snippets/search?q=${window.location.search.substr(1).split('=')[1]}`)
 					.then(res => res.json())
 					.then((snippets: SnippetType[]) => {
-						setSnippets(snippets);
+						if (snippets.length > 0) setSnippets(snippets);
 						setIsLoading(false);
 					}),
 			1000

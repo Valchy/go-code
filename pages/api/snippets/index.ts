@@ -6,7 +6,6 @@ import type { SnippetType } from '@components/snippet/types';
 
 type ErrorType = {
 	error: any;
-	data: [];
 };
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<SnippetType[] | ErrorType>) {
@@ -17,6 +16,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse<
 		const snippets = await Snippet.find({ author_email: email });
 		res.status(200).json(snippets);
 	} catch (error) {
-		res.json({ error, data: [] });
+		res.json({ error });
 	}
 }

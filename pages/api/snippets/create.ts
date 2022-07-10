@@ -18,9 +18,6 @@ const handler = nextConnect<NextApiRequest, NextApiResponse<Data | ErrorType>>()
 		await connectMongo();
 		const { name, email } = await jwtVerify(req, res);
 
-		console.log(name);
-		console.log(req.body.data.is_private);
-
 		const { code_snippet, code_language, snippet_title, is_private } = req.body.data;
 		const snippet = await Snippet.create({ author: name, author_email: email, code_snippet, code_language, snippet_title, is_private });
 
