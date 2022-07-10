@@ -25,7 +25,7 @@ const CodeEditor = () => {
 	};
 
 	return (
-		<div className="container flex flex-col items-center mt-7">
+		<div className="container flex flex-col items-center mt-7 w-screen md:w-[50vw] h-[30vh] min-h-[400px] max-w-[620px]">
 			<select className="my-4" onChange={({ target }) => setSelectedLanguage(target.value)}>
 				{['javascript', 'typescript', 'python', 'java', 'cpp', 'css', 'html'].map(lang => (
 					<option key={lang} value={lang}>
@@ -44,8 +44,7 @@ const CodeEditor = () => {
 				Public: <input type="radio" name="isPrivate" checked={isPrivate === 'no'} onChange={() => setIsPrivate('no')} />
 			</div>
 			<Editor
-				height="30vh"
-				width="50vw"
+				width={'100%'}
 				defaultLanguage="javascript"
 				language={selectedLanguage}
 				defaultValue="// Your code here..."
