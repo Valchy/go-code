@@ -9,8 +9,8 @@ const SignIn: NextPage = () => {
 			<main className="flex flex-col justify-center items-center h-96">
 				<h1 className="text-2xl mb-12">Please choose a method to sign-in</h1>
 				<GoogleButton url="/api/auth/google" />
-				<span className="my-2">or</span>
-				<GithubButton url="/api/auth/github" />
+				{/* <span className="my-2">or</span>
+				<GithubButton url="/api/auth/github" /> */}
 			</main>
 		</Layout>
 	);
