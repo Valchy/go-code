@@ -1,19 +1,12 @@
 import { CopyBlock, vs2015 } from 'react-code-blocks';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import type { SnippetType } from '@components/snippet/types';
 
 interface Snippets {
 	snippets: SnippetType[];
 	showOne?: boolean;
 }
-
-type SnippetType = {
-	author: string;
-	snippet_title: string;
-	code_snippet: string;
-	code_language: string;
-	_id: string;
-};
 
 export default function Snippets({ snippets = [], showOne }: Snippets) {
 	return (

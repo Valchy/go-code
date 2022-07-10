@@ -2,13 +2,7 @@ import { useEffect, useState } from 'react';
 import Layout from '@components/Layout';
 import Snippets from '@components/snippet';
 import PrimaryButton from '@components/buttons/Primary';
-
-type SnippetType = {
-	author: string;
-	code_snippet: string;
-	code_language: string;
-	_id: string;
-};
+import type { SnippetType } from '@components/snippet/types';
 
 export default function MySnippets() {
 	const [snippets, setSnippets] = useState<SnippetType[]>([]);

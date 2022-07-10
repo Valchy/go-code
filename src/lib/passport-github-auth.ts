@@ -1,4 +1,4 @@
-import { Profile, Strategy as GitHubStrategy } from 'passport-github2';
+import { Strategy as GitHubStrategy } from 'passport-github2';
 import passport from 'passport';
 import connectMongo from '@utils/mongoose';
 import User from '@models/User';
@@ -12,7 +12,7 @@ passport.use(
 			callbackURL: '/api/auth/callback/github',
 			passReqToCallback: true
 		},
-		async function (request, accessToken, refreshToken, profile, done) {
+		async (accessToken: any, refreshToken: any, profile: any, done: any) => {
 			try {
 				await connectMongo();
 				const user = await User.findOne({ email: profile.email });
