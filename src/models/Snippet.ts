@@ -6,6 +6,10 @@ const SnipperSchema = new Schema(
 			type: String,
 			required: true
 		},
+		author_email: {
+			type: String,
+			required: true
+		},
 		code_snippet: {
 			type: String,
 			required: true

@@ -6,13 +6,17 @@ import type { SnippetType } from '@components/snippet/types';
 
 export default function MySnippets() {
 	const [snippets, setSnippets] = useState<SnippetType[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		setTimeout(
 			() =>
 				fetch(`/api/snippets`)
 					.then(res => res.json())
-					.then((snippets: SnippetType[]) => setSnippets(snippets)),
+					.then((snippets: SnippetType[]) => {
+						setSnippets(snippets);
+						setIsLoading(false);
+					}),
 			1000
 		);
 	}, []);
@@ -20,9 +24,9 @@ export default function MySnippets() {
 	return (
 		<Layout>
 			<div className="flex flex-wrap justify-around">
-				<Snippets snippets={snippets} />
+				<Snippets snippets={snippets} isLoading={isLoading} />
 			</div>
-			<div className="flex">
+			<div className="flex mt-5">
 				<PrimaryButton handler={() => (window.location.href = '/snippets/create')} text="Create Snippet" />
 				<PrimaryButton handler={() => (window.location.href = '/api/auth/sign-out')} text="Sign Out" />
 			</div>

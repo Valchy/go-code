@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from 'next';
 import connectMongo from '@utils/mongoose';
 import Snippet from '@models/Snippet';
+import jwtVerify from '@lib/jwt-verification';
 
 type SnippetType = {
 	author: string;
@@ -15,6 +16,7 @@ type ErrorType = {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse<SnippetType | ErrorType>) {
 	try {
+		await jwtVerify(req, res);
 		await connectMongo();
 		const snippet = await Snippet.findById(req.query.snippet_id).exec();
 

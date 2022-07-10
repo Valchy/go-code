@@ -5,14 +5,17 @@ import type { SnippetType } from '@components/snippet/types';
 
 interface Snippets {
 	snippets: SnippetType[];
+	isLoading?: boolean;
 	showOne?: boolean;
 }
 
-export default function Snippets({ snippets = [], showOne }: Snippets) {
+export default function Snippets({ snippets = [], isLoading = true, showOne }: Snippets) {
+	if (!isLoading && snippets.length === 0) return <span>No snippets founds...</span>;
+
 	return (
 		<>
-			{snippets.length === 0
-				? (showOne ? [true] : [true, true]).map((e, index) => (
+			{snippets.length === 0 && isLoading
+				? new Array(3).fill(null).map((e, index) => (
 						<div className="mx-3" key={`skeleton-${index}`}>
 							<Skeleton width={300} style={{ marginBottom: '15px' }} />
 							<Skeleton width={300} />

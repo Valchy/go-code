@@ -4,8 +4,7 @@ import jwt from 'jsonwebtoken';
 import { setCookie } from 'cookies-next';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-	console.log(req.query);
-	passport.authenticate(['google', 'github'], { failureRedirect: '/sign-in' }, (err, user, info) => {
+	passport.authenticate(req.query.provider as string, { failureRedirect: '/sign-in' }, (err, user, info) => {
 		if (err) {
 			return res.json({ error: err });
 		}
@@ -15,6 +14,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 		setCookie('jwt', jwtCookie, { req, res });
 
 		// Redirect to user snippets (protected page)
-		res.redirect('/snippets/my');
+		return res.redirect('/snippets/my');
 	})(req, res);
 }

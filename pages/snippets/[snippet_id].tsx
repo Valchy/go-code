@@ -1,31 +1,28 @@
 import { useEffect, useState } from 'react';
 import Layout from '@components/Layout';
 import Snippets from '@components/snippet';
-
-type SnippetType = {
-	author: string;
-	snippet_title: string;
-	code_snippet: string;
-	code_language: string;
-	_id: string;
-};
+import type { SnippetType } from '@components/snippet/types';
 
 export default function Snippet() {
 	const [snippet, setSnippet] = useState<SnippetType[]>([]);
+	const [isLoading, setIsLoading] = useState(true);
 
 	useEffect(() => {
 		setTimeout(
 			() =>
 				fetch(`/api${window.location.pathname}`)
 					.then(res => res.json())
-					.then((snippet: SnippetType) => setSnippet([snippet])),
+					.then((snippet: SnippetType) => {
+						setSnippet([snippet]);
+						setIsLoading(false);
+					}),
 			1000
 		);
 	}, []);
 
 	return (
 		<Layout>
-			<Snippets snippets={snippet} showOne />
+			<Snippets snippets={snippet} isLoading={isLoading} showOne />
 		</Layout>
 	);
 }
