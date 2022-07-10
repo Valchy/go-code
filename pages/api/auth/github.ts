@@ -4,8 +4,4 @@ import nextConnect from 'next-connect';
 
 export default nextConnect<NextApiRequest, NextApiResponse>()
 	.use(passport.initialize())
-	.get(
-		passport.authenticate('github', {
-			failureRedirect: '/sign-in'
-		})
-	);
+	.get(passport.authenticate('github', { scope: ['user:email'] }));
